@@ -1,0 +1,1051 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.sidebarTop { display: flex; flex-direction: column; gap: 28px; }
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+}
+
+.logoIcon {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--accent), #a855f7);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.logoName {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.logoEmail {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 10px;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  color: var(--text2);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.navBtn:hover { background: var(--bg3); color: var(--text); }
+.navActive { background: var(--bg3) !important; color: var(--text) !important; }
+.navActive svg { color: var(--accent); }
+
+.sidebarBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 10px;
+}
+
+.chatLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 13px;
+  transition: all 0.12s;
+}
+.chatLink:hover { background: var(--bg3); color: var(--text); }
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  color: var(--text3);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.12s;
+  width: 100%;
+}
+.logoutBtn:hover { background: rgba(239,68,68,0.1); color: var(--red); }
+
+/* ── Main ── */
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 36px 40px;
+}
+
+.tabContent {
+  max-width: 820px;
+  animation: fadeIn 0.3s ease;
+}
+
+.tabTitle {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.tabDesc {
+  color: var(--text2);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+/* ── Stats ── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.statCard {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color 0.15s;
+}
+.statCard:hover { border-color: var(--border2); }
+
+.statIcon {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statValue {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 4px;
+}
+
+.statSub {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+.recentSection { margin-top: 4px; }
+.recentSection h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.recentList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recentItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text2);
+  font-size: 13px;
+}
+
+.recentTitle {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+.recentDate { font-size: 12px; color: var(--text3); flex-shrink: 0; }
+
+/* ── Mode Toggle ── */
+.modeToggle {
+  display: flex;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+  width: fit-content;
+  margin-bottom: 20px;
+}
+
+.modeBtn {
+  padding: 8px 20px;
+  border-radius: 9px;
+  border: none;
+  background: none;
+  color: var(--text2);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.modeActive {
+  background: var(--bg3);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* ── Drop Zone ── */
+.dropZone {
+  border: 2px dashed var(--border2);
+  border-radius: 16px;
+  padding: 40px 24px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.dropZone:hover, .dragOver {
+  border-color: var(--accent);
+  background: rgba(108,99,255,0.05);
+}
+
+.dropContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--text2);
+}
+
+.dropIcon {
+  width: 56px; height: 56px;
+  background: var(--bg3);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.dropContent p { font-size: 14.5px; color: var(--text); }
+.dropContent span { font-size: 12px; color: var(--text3); }
+
+/* ── Paste Box ── */
+.pasteBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.pasteTitle {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.pasteTitle:focus { border-color: var(--accent); }
+.pasteTitle::placeholder { color: var(--text3); }
+
+.pasteText {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-size: 13.5px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.15s;
+  line-height: 1.6;
+  font-family: inherit;
+}
+.pasteText:focus { border-color: var(--accent); }
+.pasteText::placeholder { color: var(--text3); }
+
+.addBtn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  transition: all 0.15s;
+}
+.addBtn:hover:not(:disabled) {
+  background: var(--accent2);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+.addBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Doc List ── */
+.docSection h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.docList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.docItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color 0.12s;
+}
+.docItem:hover { border-color: var(--border2); }
+.docInactive { opacity: 0.5; }
+
+.docEmoji { font-size: 22px; flex-shrink: 0; }
+
+.docInfo {
+  flex: 1;
+  overflow: hidden;
+}
+
+.docTitle {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docMeta {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 3px;
+}
+
+.docActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.toggleDocBtn {
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.activeDoc {
+  background: rgba(34,197,94,0.1);
+  border-color: rgba(34,197,94,0.4);
+  color: var(--green);
+}
+.inactiveDoc {
+  background: var(--bg3);
+  border-color: var(--border);
+  color: var(--text3);
+}
+
+.delBtn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px;
+  color: var(--text3);
+  display: flex;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+.delBtn:hover { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.4); color: var(--red); }
+
+/* ── Settings ── */
+.settingSection {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 16px;
+}
+
+.settingSection h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settingDesc {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 14px;
+}
+.settingDesc a { color: var(--accent2); text-decoration: none; }
+.settingDesc a:hover { text-decoration: underline; }
+
+.configuredBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: var(--green);
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 12.5px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.settingInput {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+  margin-top: 6px;
+}
+.settingInput:focus { border-color: var(--accent); }
+.settingInput::placeholder { color: var(--text3); }
+
+.settingTextarea {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+  margin-top: 6px;
+}
+.settingTextarea:focus { border-color: var(--accent); }
+.settingTextarea::placeholder { color: var(--text3); }
+
+.saveBtn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s;
+}
+.saveBtn:hover:not(:disabled) {
+  background: var(--accent2);
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+.saveBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+/* ── Toast ── */
+.toast {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.2s ease;
+}
+.toastSuccess {
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: #4ade80;
+}
+.toastError {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #f87171;
+}
+
+/* ── Util ── */
+.loader {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--text3);
+  font-size: 14px;
+  padding: 32px;
+  background: var(--bg2);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    padding: 12px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .sidebarTop {
+    gap: 16px;
+  }
+  
+  .logo {
+    padding: 0 12px;
+  }
+  
+  .logoIcon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .logoName {
+    font-size: 13px;
+  }
+  
+  .logoEmail {
+    max-width: 120px;
+  }
+  
+  .nav {
+    padding: 0 8px;
+  }
+  
+  .navBtn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  
+  .sidebarBottom {
+    padding: 0 8px;
+  }
+  
+  .main {
+    padding: 24px 20px;
+  }
+  
+  .tabContent {
+    max-width: 100%;
+  }
+  
+  .tabTitle {
+    font-size: 18px;
+  }
+  
+  .tabDesc {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .statCard {
+    padding: 14px;
+    gap: 12px;
+  }
+  
+  .statIcon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .statValue {
+    font-size: 18px;
+  }
+  
+  .statLabel {
+    font-size: 11px;
+  }
+  
+  .statSub {
+    font-size: 10px;
+  }
+  
+  .recentSection h3 {
+    font-size: 13px;
+  }
+  
+  .recentItem {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .modeToggle {
+    margin-bottom: 16px;
+  }
+  
+  .modeBtn {
+    padding: 7px 16px;
+    font-size: 12px;
+  }
+  
+  .dropZone {
+    padding: 32px 20px;
+    margin-bottom: 24px;
+  }
+  
+  .dropIcon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .dropContent p {
+    font-size: 13px;
+  }
+  
+  .dropContent span {
+    font-size: 11px;
+  }
+  
+  .pasteBox {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  
+  .pasteTitle {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .pasteText {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .addBtn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .docSection h3 {
+    font-size: 13px;
+  }
+  
+  .docItem {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+  
+  .docEmoji {
+    font-size: 18px;
+  }
+  
+  .docTitle {
+    font-size: 13px;
+  }
+  
+  .docMeta {
+    font-size: 11px;
+  }
+  
+  .toggleDocBtn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  
+  .delBtn {
+    padding: 5px;
+  }
+  
+  .settingSection {
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  
+  .settingSection h3 {
+    font-size: 13px;
+  }
+  
+  .settingDesc {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .configuredBadge {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  
+  .settingInput {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .settingTextarea {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .saveBtn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+  
+  .divider {
+    margin: 20px 0;
+  }
+  
+  .toast {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    padding: 10px 0;
+  }
+  
+  .sidebarTop {
+    gap: 12px;
+  }
+  
+  .logo {
+    padding: 0 10px;
+  }
+  
+  .logoIcon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .logoName {
+    font-size: 12px;
+  }
+  
+  .logoEmail {
+    max-width: 100px;
+    font-size: 10px;
+  }
+  
+  .nav {
+    padding: 0 6px;
+  }
+  
+  .navBtn {
+    padding: 7px 8px;
+    font-size: 11px;
+    gap: 8px;
+  }
+  
+  .sidebarBottom {
+    padding: 0 6px;
+  }
+  
+  .chatLink {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  
+  .logoutBtn {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  
+  .main {
+    padding: 20px 16px;
+  }
+  
+  .tabTitle {
+    font-size: 16px;
+  }
+  
+  .tabDesc {
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .statCard {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .statIcon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .statValue {
+    font-size: 16px;
+  }
+  
+  .statLabel {
+    font-size: 10px;
+  }
+  
+  .statSub {
+    font-size: 9px;
+  }
+  
+  .recentSection h3 {
+    font-size: 12px;
+  }
+  
+  .recentItem {
+    padding: 7px 10px;
+    font-size: 11px;
+    gap: 8px;
+  }
+  
+  .recentDate {
+    font-size: 11px;
+  }
+  
+  .modeToggle {
+    width: 100%;
+    margin-bottom: 14px;
+  }
+  
+  .modeBtn {
+    padding: 6px 12px;
+    font-size: 11px;
+    flex: 1;
+  }
+  
+  .dropZone {
+    padding: 28px 16px;
+    margin-bottom: 20px;
+  }
+  
+  .dropIcon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .dropContent p {
+    font-size: 12px;
+  }
+  
+  .dropContent span {
+    font-size: 10px;
+  }
+  
+  .pasteBox {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .pasteTitle {
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+  
+  .pasteText {
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+  
+  .addBtn {
+    padding: 9px 14px;
+    font-size: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .docSection h3 {
+    font-size: 12px;
+  }
+  
+  .docItem {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  
+  .docEmoji {
+    font-size: 16px;
+  }
+  
+  .docTitle {
+    font-size: 12px;
+  }
+  
+  .docMeta {
+    font-size: 10px;
+  }
+  
+  .docActions {
+    gap: 6px;
+  }
+  
+  .toggleDocBtn {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+  
+  .delBtn {
+    padding: 4px;
+  }
+  
+  .settingSection {
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  
+  .settingSection h3 {
+    font-size: 12px;
+  }
+  
+  .settingDesc {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+  
+  .configuredBadge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+  
+  .settingInput {
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+  
+  .settingTextarea {
+    padding: 9px 11px;
+    font-size: 12px;
+  }
+  
+  .saveBtn {
+    padding: 9px 16px;
+    font-size: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .divider {
+    margin: 16px 0;
+  }
+  
+  .toast {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  
+  .loader {
+    padding: 24px;
+  }
+  
+  .empty {
+    padding: 24px;
+    font-size: 12px;
+  }
+}
