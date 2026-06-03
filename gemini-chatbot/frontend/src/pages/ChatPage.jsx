@@ -6,8 +6,8 @@ import styles from "./ChatPage.module.css";
 
 const SUGGESTIONS = [
   "What services do you offer?",
-  "Tell me about your admission process",
-  "What are your business hours?",
+  "Tell me about your ask ai widget setup process",
+  "What is your api pricing?",
   "How can I contact support?",
 ];
 
