@@ -16,7 +16,7 @@ import {
 } from "../utils/clientApi";
 import styles from "./AdminDashboard.module.css";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://embedai-backend.onrender.com";
 const WIDGET_BASE = process.env.REACT_APP_WIDGET_URL || window.location.origin;
 
 function OverviewTab({ stats, onRefresh }) {
