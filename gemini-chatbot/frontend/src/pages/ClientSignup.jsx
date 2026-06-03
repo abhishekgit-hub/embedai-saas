@@ -57,8 +57,14 @@ export default function ClientSignup() {
     setLoading(true);
     try {
       const res = await verifyEmail(signupEmail, otp);
-      login(res.data.token, res.data.client);
-      navigate("/client/dashboard");
+      if (res.data.requiresApproval) {
+        // Show success message and redirect to login
+        setStep(3); // Show approval waiting message
+      } else {
+        // Client is already approved, log them in
+        login(res.data.token, res.data.client);
+        navigate("/client/dashboard");
+      }
     } catch (err) {
       setError(err.response?.data?.error || "Verification failed.");
     } finally {
@@ -162,6 +168,59 @@ export default function ClientSignup() {
   }
 
   // Step 2: OTP verification
+  if (step === 2) {
+    return (
+      <div className={styles.page}>
+        <div className={styles.bg}>
+          <div className={styles.orb1} />
+          <div className={styles.orb2} />
+        </div>
+        <div className={styles.card}>
+          <div className={styles.header}>
+            <div className={styles.icon}>🔐</div>
+            <h1>Verify Email</h1>
+            <p>We sent a 6-digit code to {signupEmail}</p>
+          </div>
+          <div className={styles.form}>
+            <OTPInput length={6} onComplete={setOtp} onChange={setOtp} />
+            {error && <div className={styles.error}>{error}</div>}
+            <button
+              onClick={handleVerifyOTP}
+              className={styles.submitBtn}
+              disabled={loading || otp.length !== 6}
+              style={{ marginTop: "24px" }}
+            >
+              {loading ? "Verifying…" : "Verify Email"}
+            </button>
+            <div style={{ textAlign: "center", marginTop: "16px" }}>
+              {canResend ? (
+                <button
+                  onClick={handleResendOTP}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "var(--accent)",
+                    cursor: "pointer",
+                    textDecoration: "underline",
+                    fontSize: "14px",
+                  }}
+                  disabled={loading}
+                >
+                  Resend code
+                </button>
+              ) : (
+                <span style={{ fontSize: "14px", color: "var(--text2)" }}>
+                  Resend code in {resendCountdown}s
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Step 3: Approval waiting message
   return (
     <div className={styles.page}>
       <div className={styles.bg}>
@@ -170,43 +229,32 @@ export default function ClientSignup() {
       </div>
       <div className={styles.card}>
         <div className={styles.header}>
-          <div className={styles.icon}>🔐</div>
-          <h1>Verify Email</h1>
-          <p>We sent a 6-digit code to {signupEmail}</p>
+          <div className={styles.icon}>✅</div>
+          <h1>Email Verified</h1>
+          <p>Your email has been successfully verified.</p>
         </div>
         <div className={styles.form}>
-          <OTPInput length={6} onComplete={setOtp} onChange={setOtp} />
-          {error && <div className={styles.error}>{error}</div>}
+          <div style={{ 
+            padding: "20px", 
+            background: "var(--bg3)", 
+            borderRadius: "8px", 
+            marginBottom: "20px",
+            textAlign: "center"
+          }}>
+            <p style={{ fontSize: "16px", color: "var(--text1)", marginBottom: "8px" }}>
+              <strong>Please wait for admin approval</strong>
+            </p>
+            <p style={{ fontSize: "14px", color: "var(--text2)" }}>
+              Your account is pending approval. You will be notified once your account is approved by the administrator.
+            </p>
+          </div>
           <button
-            onClick={handleVerifyOTP}
+            onClick={() => navigate("/client/login")}
             className={styles.submitBtn}
-            disabled={loading || otp.length !== 6}
             style={{ marginTop: "24px" }}
           >
-            {loading ? "Verifying…" : "Verify Email"}
+            Go to Login
           </button>
-          <div style={{ textAlign: "center", marginTop: "16px" }}>
-            {canResend ? (
-              <button
-                onClick={handleResendOTP}
-                style={{
-                  background: "none",
-                  border: "none",
-                  color: "var(--accent)",
-                  cursor: "pointer",
-                  textDecoration: "underline",
-                  fontSize: "14px",
-                }}
-                disabled={loading}
-              >
-                Resend code
-              </button>
-            ) : (
-              <span style={{ fontSize: "14px", color: "var(--text2)" }}>
-                Resend code in {resendCountdown}s
-              </span>
-            )}
-          </div>
         </div>
       </div>
     </div>

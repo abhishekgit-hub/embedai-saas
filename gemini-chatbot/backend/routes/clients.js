@@ -195,7 +195,15 @@ router.post("/verify-email", async (req, res) => {
     client.isEmailVerified = true;
     await client.save();
 
-    res.json(clientResponse(client));
+    // Only return token if client is approved, otherwise return success message
+    if (client.approvalStatus === "approved") {
+      res.json(clientResponse(client));
+    } else {
+      res.json({ 
+        message: "Email verified successfully. Please wait for admin approval.",
+        requiresApproval: true 
+      });
+    }
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
