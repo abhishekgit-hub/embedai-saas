@@ -22,11 +22,11 @@
       var u = new URL(script.src);
       backendUrl = u.origin;
     } catch (e) {
-      backendUrl = "http://localhost:5000";
+      backendUrl = "https://embedai-backend.onrender.com";
     }
   }
 
-  var widgetBase = script.getAttribute("data-widget-url") || "http://localhost:3000";
+  var widgetBase = script.getAttribute("data-widget-url") || "https://bizqueryai.abhishekh-chaudhary.com.np";
 
   var config = null;
   var isOpen = false;
