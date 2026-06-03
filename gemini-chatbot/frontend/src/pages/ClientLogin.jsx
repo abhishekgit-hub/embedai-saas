@@ -131,6 +131,9 @@ export default function ClientLogin() {
               )}
             </div>
           </div>
+          <a href="/" className={styles.backLink}>
+            ← Back to Chat
+          </a>
         </div>
       </div>
     );
@@ -180,6 +183,9 @@ export default function ClientLogin() {
         <p style={{ textAlign: "center", marginTop: 16, fontSize: 14, color: "var(--text2)" }}>
           No account? <Link to="/client/signup" style={{ color: "var(--accent)" }}>Sign up</Link>
         </p>
+        <a href="/" className={styles.backLink}>
+          ← Back to Chat
+        </a>
       </div>
     </div>
   );

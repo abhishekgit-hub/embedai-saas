@@ -55,6 +55,8 @@ export default function ChatPage() {
   const [settings, setSettings] = useState({ chatbot_name: "AI Assistant", welcome_message: "Hello! How can I help you today?" });
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
 
   useEffect(() => {
     loadSessions();
@@ -145,13 +147,35 @@ export default function ChatPage() {
     }
   }
 
+  // Touch gesture handlers for mobile sidebar
+  function handleTouchStart(e) {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }
+
+  function handleTouchEnd(e) {
+    if (!sidebarOpen) return;
+    
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    
+    const deltaX = touchEndX - touchStartX.current;
+    const deltaY = touchEndY - touchStartY.current;
+    
+    // Only close on horizontal swipe (left swipe, i.e., negative deltaX)
+    // Ignore vertical scrolling (deltaY > deltaX)
+    if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < -50) {
+      setSidebarOpen(false);
+    }
+  }
+
   const isEmpty = messages.length === 0;
 
   return (
-    <div className={styles.layout}>
+    <div className={styles.layout} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
       {/* Mobile backdrop */}
       <div className={`${styles.backdrop} ${sidebarOpen ? styles.open : ""}`} onClick={() => setSidebarOpen(false)} />
-      
+
       {/* Sidebar */}
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.open : styles.closed}`}>
         <div className={styles.sidebarHeader}>
