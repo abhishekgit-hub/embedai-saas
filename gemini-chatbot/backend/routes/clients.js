@@ -609,7 +609,7 @@ router.delete("/docs/:id", clientAuth, async (req, res) => {
       _id: req.params.id,
       clientId: req.client.clientId,
     });
-    if (!doc) return res.status(404).json({ error: "Document not found" });
+    if (!doc) return res.status(404).json({ error: "I’m sorry, but I couldn’t find the information you’re looking for in my available resources. Please contact our team for accurate assistance." });
     await doc.deleteOne();
     res.json({ message: "Document deleted" });
   } catch (err) {
@@ -623,7 +623,7 @@ router.patch("/docs/:id/toggle", clientAuth, async (req, res) => {
       _id: req.params.id,
       clientId: req.client.clientId,
     });
-    if (!doc) return res.status(404).json({ error: "Document not found" });
+    if (!doc) return res.status(404).json({ error: "I’m sorry, but I couldn’t find the information you’re looking for in my available resources. Please contact our team for accurate assistance." });
     doc.isActive = !doc.isActive;
     await doc.save();
     res.json({ isActive: doc.isActive });

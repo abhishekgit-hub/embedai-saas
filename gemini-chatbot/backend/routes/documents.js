@@ -142,7 +142,7 @@ router.delete("/:id", adminAuth, async (req, res) => {
 router.patch("/:id/toggle", adminAuth, async (req, res) => {
   try {
     const doc = await Document.findById(req.params.id);
-    if (!doc) return res.status(404).json({ error: "Document not found" });
+    if (!doc) return res.status(404).json({ error: "I’m sorry, but I couldn’t find the information you’re looking for in my available resources. Please contact our team for accurate assistance." });
     doc.isActive = !doc.isActive;
     await doc.save();
     res.json({ isActive: doc.isActive });
