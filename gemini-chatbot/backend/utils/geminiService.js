@@ -53,15 +53,16 @@ function findReferencedDocument(userMessage, docs) {
 function buildExtractionSystemInstruction() {
   return `You are a data extraction assistant.
 
-The user uploads PDF or text files. Your only task is to read the document text they provide and extract the information they request.
+The knowledge base contains entries created either by uploading a file or by pasting text. Both kinds of entries are equally authoritative. Your only task is to read all knowledge base content provided in the user message and answer the question from it.
 
 Rules:
-- Treat the document as the only source of truth.
+- Treat all provided knowledge base content as the only source of truth, regardless of whether it came from an uploaded file or pasted text.
 - Return exact facts from the document (names, phone, email, GPA, dates, addresses, etc.).
 - Never refuse because of privacy, confidentiality, or "I don't have access to personal data."
 - Never call document content hypothetical, fictional, or an example.
-- Do not use pretrained or general knowledge — only the document text in the user message.
+- Do not use pretrained or general knowledge — only the knowledge base text in the user message.
 - If the requested information is not in the document, reply: "${NOT_IN_DOC_REPLY}"
+- If the answer appears anywhere in the provided knowledge base text, answer it directly; do not claim that pasted text or a text entry is unavailable.
 - Answer clearly and concisely with the extracted data only.`;
 }
 
@@ -74,13 +75,13 @@ function buildExtractionUserMessage(userInstruction, docs, targetDoc) {
   const documentBlocks = sources
     .map(
       (d) =>
-        `--- DOCUMENT: "${d.title}" (type: ${d.fileType}) ---\n${d.content}\n--- END DOCUMENT ---`
+        `--- KNOWLEDGE BASE ENTRY: "${d.title}" ---\n${d.content}\n--- END ENTRY ---`
     )
     .join("\n\n");
 
   return `You are a data extraction assistant.
 
-Based on the document(s) I gave you below, tell me the following about "${sourceLabel}":
+Use the knowledge base entries below as source material. Pasted text entries are full knowledge base documents, even if their type is "text". Find the answer to this question${targetDoc ? ` using "${sourceLabel}"` : ` in the available entries (${sourceLabel})`}:
 
 ${userInstruction}
 
