@@ -6,7 +6,7 @@ const {
 const Settings = require("../models/Settings");
 const Document = require("../models/Document");
 
-const NOT_IN_DOC_REPLY = "Not found in the document.";
+const NOT_IN_DOC_REPLY = "I’m sorry, but I couldn’t find the information you’re looking for in my available resources. Please contact our team for accurate assistance.";
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash-lite";
 
